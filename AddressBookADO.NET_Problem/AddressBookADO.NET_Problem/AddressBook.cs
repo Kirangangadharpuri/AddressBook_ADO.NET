@@ -49,5 +49,48 @@ namespace AddressBookADO.NET_Problem
                 Console.WriteLine(ex.Message);
             }
         }
+        public void GetAllDataFromDatabase()
+        {
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            try
+            {
+                List<Contacts> list = new List<Contacts>();
+                using (sqlConnection)
+                {
+                    sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand("SPGetAllData", sqlConnection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            Contacts contact = new Contacts();
+                            contact.FirstName = reader.GetString(1);
+                            contact.LastName = reader.GetString(2);
+                            contact.Address = reader.GetString(3);
+                            contact.City = reader.GetString(4);
+                            contact.State = reader.GetString(5);
+                            contact.Zip = reader.GetInt32(6);
+                            contact.PhoneNumber = (int)reader.GetInt64(7);
+                            contact.EmilID = reader.GetString(8);
+                            list.Add(contact);
+                        }
+                        foreach (Contacts item in list)
+                        {
+                            Console.WriteLine(item.FirstName + "" + item.LastName + "" + item.Address + "" + item.City + "" + item.State + "" + item.Zip + "" + item.PhoneNumber + "" + item.EmilID);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No row is exist");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }
