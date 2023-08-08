@@ -16,6 +16,7 @@ namespace AddressBookADO.NET_Problem
                 AddressBook addressBook = new AddressBook();
                 Console.WriteLine("1-INSERT DATA IN TABLE");
                 Console.WriteLine("2-READ ALL DATA FROM TABLE");
+                Console.WriteLine("3-UPDATE EXISTING DATA IN TABLE");
                 Console.WriteLine("Select above option");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
@@ -26,6 +27,16 @@ namespace AddressBookADO.NET_Problem
                     case 2:
                         addressBook.GetAllDataFromDatabase();
                         break;
+                    case 3:
+                        Contacts contact = new Contacts()
+                        {
+                            FirstName = "Swati",
+                            LastName = "Ambadas",
+                            City = "Sangmner"
+                        };
+                        addressBook.UpdateDataInDB(contacts);
+                        break;
+
                 }
             }
         }
