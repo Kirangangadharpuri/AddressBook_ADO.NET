@@ -17,6 +17,7 @@ namespace AddressBookADO.NET_Problem
                 Console.WriteLine("1-INSERT DATA IN TABLE");
                 Console.WriteLine("2-READ ALL DATA FROM TABLE");
                 Console.WriteLine("3-UPDATE EXISTING DATA IN TABLE");
+                Console.WriteLine("4-DELETE DATA FROM DATABASE");
                 Console.WriteLine("Select above option");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
@@ -35,6 +36,9 @@ namespace AddressBookADO.NET_Problem
                             City = "Sangmner"
                         };
                         addressBook.UpdateDataInDB(contacts);
+                        break;
+                    case 4:
+                        addressBook.DeleteDataFromDB("Kiran");
                         break;
 
                 }

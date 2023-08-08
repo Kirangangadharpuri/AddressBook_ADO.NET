@@ -22,12 +22,18 @@
 --END
 
 --UC3
-CREATE PROCEDURE SPUpdateData_inDataBase
-@FirstName VARCHAR(30),
-@LastName VARCHAR(30),
-@City VARCHAR(30)
-AS BEGIN
-UPDATE AddressBook SET LastName=@LastName,City=@City WHERE FirstName=@FirstName
-END
-Select * from AddressBook;
+--CREATE PROCEDURE SPUpdateData_inDataBase
+--@FirstName VARCHAR(30),
+--@LastName VARCHAR(30),
+--@City VARCHAR(30)
+--AS BEGIN
+--UPDATE AddressBook SET LastName=@LastName,City=@City WHERE FirstName=@FirstName
+--END
+--Select * from AddressBook;
 
+--UC4
+CREATE PROCEDURE SPDeleteData_FromDB
+(@FirstName VARCHAR(30))
+AS BEGIN
+DELETE FROM AddressBook WHERE FirstName=@FirstName
+END
